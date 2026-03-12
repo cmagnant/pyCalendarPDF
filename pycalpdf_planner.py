@@ -20,11 +20,13 @@ NORMAL_LW = 0.2
 PAGE_W = 210
 PAGE_H = 297
 RIGHT_EDGE = PAGE_W - MARGIN
+CONTENT_W = PAGE_W - 2 * MARGIN
 
-# Table bounds
+# Table bounds: day numbers | blank (~45%) | three squares | weekly
 TABLE_X = MARGIN
 TABLE_Y0 = 22
-THREE_COL_X = TABLE_X + DAY_COL_W
+BLANK_COL_W = CONTENT_W * 0.45
+THREE_COL_X = TABLE_X + DAY_COL_W + BLANK_COL_W
 WEEKLY_COL_X = THREE_COL_X + THREE_COL_W
 WEEKLY_COL_W = RIGHT_EDGE - WEEKLY_COL_X
 
@@ -101,10 +103,10 @@ def main():
     pdf.line(TABLE_X, uy, TABLE_X + 50, uy)
     pdf.set_font("Helvetica", size=10)
 
-    # --- "Weekly" header above the right (three columns + weekly area) ---
-    pdf.set_xy(THREE_COL_X, TABLE_Y0 - 8)
+    # --- "Weekly" header at top right of page ---
     pdf.set_font("Helvetica", "B", size=10)
-    pdf.cell(THREE_COL_W + WEEKLY_COL_W, 6, "Weekly", border=0, align="L")
+    pdf.set_xy(RIGHT_EDGE - 25, MARGIN)
+    pdf.cell(25, 10, "Weekly", border=0, align="R")
     pdf.set_font("Helvetica", size=10)
 
     # --- Main table: day number column + three square columns + weekly column ---
@@ -122,6 +124,10 @@ def main():
             pdf.set_line_width(THICK)
             pdf.rect(day_x, day_y, DAY_COL_W, ROW_H)
             pdf.set_line_width(NORMAL_LW)
+
+        # Blank column (~45% width) between numbers and three columns
+        pdf.set_xy(TABLE_X + DAY_COL_W, row_y)
+        pdf.cell(BLANK_COL_W, ROW_H, "", border=1, align="L")
 
         # Thick horizontal line between Saturday and Sunday (below Saturday row)
         if sat:
