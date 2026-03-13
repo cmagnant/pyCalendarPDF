@@ -8,7 +8,7 @@ import calendar
 
 # --- Config ---
 YEAR = 2026
-MONTH = 3
+MONTH = 4
 MARGIN = 10
 ROW_H = 5.5
 DAY_COL_W = 10
@@ -165,8 +165,9 @@ def main():
         ch = cw
     draw_small_calendar(pdf, YEAR, MONTH, CAL_X, CAL_Y, cw, ch)
 
-    pdf.output("planner.pdf")
-    print("Wrote planner.pdf")
+    out_name = f"Planner_{YEAR}-{MONTH:02d}.pdf"
+    pdf.output(out_name)
+    print(f"Wrote {out_name}")
 
 
 if __name__ == "__main__":

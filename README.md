@@ -42,7 +42,7 @@ Generates a planner-style page for the chosen month:
 - **Right:** Weekly column for each day row.
 - **Bottom:** “Monthly Goals” on the left; a small month calendar (same style as `Cal_pdf.py`) on the bottom right.
 
-Output: `planner.pdf`.
+Output: `Planner_YYYY-MM.pdf` (e.g. `Planner_2026-04.pdf` for April).
 
 ```bash
 python pycalpdf_planner.py

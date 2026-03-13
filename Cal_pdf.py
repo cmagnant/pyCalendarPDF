@@ -4,6 +4,7 @@ import calendar
 # 1. Generate calendar data (weeks Sun–Sat so one row = one week)
 year = 2026
 month = 3
+
 calendar.setfirstweekday(calendar.SUNDAY)
 cal = calendar.monthcalendar(year, month)
 month_name = calendar.month_name[month]
